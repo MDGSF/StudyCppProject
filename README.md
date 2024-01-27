@@ -102,7 +102,24 @@ git pull --rebase
 - merge: 从其它分支合并过来。
 - revert: 回退。
 
-[Git Commit 完整规范]: https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
+## make
+
+```sh
+make  # 编译 Makefile 项目
+make -j 8  # 开8个进程同时编译
+```
+
+## netstat
+
+```sh
+netstat -anop | grep [xxx]
+-t tcp
+-u udp
+-x unix
+-a 显示所有的 socket
+-n 显示IP地址，而不是显示域名
+-p display PID/Program name for sockets
+```
 
 ## gdb
 
