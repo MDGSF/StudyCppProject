@@ -123,7 +123,54 @@ netstat -anop | grep [xxx]
 
 ## gdb
 
+gdb 调试的时候，一般开 2 个窗口，一个看源码，一个执行 gdb 调试。
+
 ### gdb 基础使用
+
+- 编译的时候需要添加 `-g -O0` 参数。
+
+```sh
+gdb exe_program  # gdb 调试某个程序
+gdb --args exe_program arg1 arg2 arg3 ... # 指定参数
+gdb attach [pid]  # gdb 调试某个运行中的进程
+
+start  # 开始运行，然后自动在 main 函数最开始的地方停下来
+run  # 运行程序
+run arg1 arg2 arg3 .... # 带参数运行
+bt(backtrace)  # 查看堆栈
+frame n  # 切换栈帧
+list  # 查看代码
+list 10  # 查看第10行附近的代码
+b(break) [function_name]  # 给某个函数添加断点
+b [line_number]  # 给当前文件的指定行添加断点
+b [file_name]:[line_number]  # 给指定文件的指定行添加断点
+b [namespace]::[namespace]::[classname]::[function_name]  # C++下添加断点
+i b / info b  # 查看所有断点信息
+tb(tbreak) xxx # 添加临时断点，只会执行一次，用法和 break 一样
+disable [breakpoint-id]  # 禁用指定断点
+enable [breakpoint-id]  # 启用指定断点
+delete [breakpoint-id]  # 删除某个断点
+delete  # 删除所有断点
+r(run)  # 运行
+n(next)  # 运行下一行语句
+c(continue)  # 运行到下一个断点
+s(step)  # 进入函数
+f(finish)  # 结束当前函数的执行，会把整个函数执行完
+return  # 从当前停的这个位置，直接结束函数的执行，后面的部分就不会执行了
+return value  # 可以带返回值
+u(until) [line_number]  # 一直运行到指定的行才停下来
+print variable_name  # 查看变量信息
+print array@n  # 查看数组的前 n 个元素
+print array@20  # 查看数组的前 20 个元素
+kill  # 让 gdb 与运行中的程序脱离，并停止对程序文件的使用。
+quit  # 退出 gdb
+```
+
+如果在 gdb 调试的过程中，我们修复了 bug，然后希望重新调试，但是又不希望退出
+gdb，因为我们已经在 gdb 里面添加了很多断点。可以这么操作：先执行 `kill` 命令，
+然后替换二进制文件，再执行 `run` 重新运行程序。
+
+### gcore
 
 ## vscode 调试代码
 
