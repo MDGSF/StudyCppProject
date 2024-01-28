@@ -319,6 +319,30 @@ std::string str(c, n);
 
 - smallchat: <https://github.com/antirez/smallchat>
 
+#### smallchat-server
+
+- 程序结构
+  - 初始化
+  - 一个 while 循环，在 while 循环不断检测包括监听 fd 在内的读事件，如果是监听
+    fd，则接受连接，并将接受的 fd 挂到 select 函数，如果是普通 fd，处理读事件
+    （收数据）。
+- 一个连接 fd 对应一个 client 对象。
+- 管理所有 client 的对象，`struct chatstate* Chat`
+- 知识点：select 函数的用法
+  - select 函数的第一个参数
+  - select 函数的第二三四参数
+  - select 函数的第五参数
+  - select 函数的返回值
+  - `FD_ZERO`，`FD_SET`，`FD_ISSET`
+
+#### smallchat-client
+
+- 程序结构
+  - 初始化：选择一个本机可用 IP 地址，并通过用户传进来的端口号建立连接。
+  - 使用一个 while 循环，将 connectfd 和 stdin-fd 挂载到 select 函数上，
+    判断读事件。如果是 connectfd 的读事件，则从服务端收取数据。如果是 stdin-fd
+    的读事件，则从控制台收集数据。
+
 ## Book
 
 - C++ Core Guideline
