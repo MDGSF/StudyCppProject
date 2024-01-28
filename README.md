@@ -281,7 +281,22 @@ gdb，因为我们已经在 gdb 里面添加了很多断点。可以这么操作
 }
 ```
 
+## 基础编程能力
+
+- 线程
+  - `thread`
+  - `mutex`
+  - `shared_mutex`
+  - `condition_variable`
+  - `semaphore`
+- 文件
+  - open, close, read, write
+  - 目录
+- 设计模式、设计思想
+
 ## 优秀项目
+
+### smallchat
 
 - smallchat: <https://github.com/antirez/smallchat>
 
@@ -289,3 +304,6 @@ gdb，因为我们已经在 gdb 里面添加了很多断点。可以这么操作
 
 - C++ Core Guideline
 - C++ 之旅
+- Linux 系统编程
+- Windows 程序设计（第五版）
+- Windows 核心编程
