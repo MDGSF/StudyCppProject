@@ -303,6 +303,16 @@ currentDir[255] = '\0';  // 防止溢出
 std::string strCurrentDir(currentDir);
 ```
 
+```sh
+std::string(const char* s, size_t n);
+std::string(size_t n, char c);
+
+# 这个会导致调用到第二个构造函数
+char c = 'a';
+size_t n = 16;
+std::string str(c, n);
+```
+
 ## 优秀项目
 
 ### smallchat
