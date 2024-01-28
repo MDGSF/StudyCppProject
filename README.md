@@ -174,6 +174,113 @@ gdb，因为我们已经在 gdb 里面添加了很多断点。可以这么操作
 
 ## vscode 调试代码
 
+`.vscode/c_cpp_properties.json` 文件内容：
+
+```json
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "/usr/include",
+        "${workspaceFolder}"
+      ],
+      "defines": [],
+      "compilerPath": "/usr/bin/gcc",
+      "intelliSenseMode": "gcc-x64",
+      "browse": {
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": "",
+        "path": [
+          "${workspaceFolder}"
+        ]
+      }
+    }
+  ],
+  "version": 4
+}
+```
+
+`.vscode/launch.json` 文件内容：
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Bash on Windows Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/path/to/exe_program",
+      "args": [],
+      "stopAtEntry": false,
+      "miDebuggerArgs": "",
+      "cwd": "/path/to/working-directory/",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "sourceFileMap": {
+        "/home/dev/git/StudyCppProject/": "/home/dev/git/StudyCppProject/"
+      },
+      "pipeTransport": {
+        "debuggerPath": "/usr/bin/gdb",
+        "pipeProgram": "/usr/bin/bash",
+        "pipeArgs": [
+          "-c"
+        ],
+        "pipeCwd": ""
+      },
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+  ]
+}
+```
+
+`.vscode/tasks.json` 文件内容：
+
+```json
+{
+  "version": "2.0.0",
+  "options": {
+    "cwd": "/path/to/working-directory/"
+  },
+  "tasks": [
+    {
+      "label": "cmake",
+      "type": "shell",
+      "command": "cmake",
+      "args": [
+        "."
+      ]
+    },
+    {
+      "label": "make",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": [
+        "cmake"
+      ],
+      "command": "make",
+      "args": []
+    },
+    {
+      "label": "Build my project",
+      "dependsOn": [
+        "make"
+      ]
+    }
+  ]
+}
+```
+
 ## 优秀项目
 
 - smallchat: <https://github.com/antirez/smallchat>
