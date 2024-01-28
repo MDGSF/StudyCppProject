@@ -1,7 +1,5 @@
 # StudyCppProject
 
-- C/C++ 开发编码时的防御和习惯优于调试和生成问题排查。
-
 ## git
 
 ### git 基础命令
@@ -293,6 +291,17 @@ gdb，因为我们已经在 gdb 里面添加了很多断点。可以这么操作
   - open, close, read, write
   - 目录
 - 设计模式、设计思想
+
+## 防御式编程
+
+- C/C++ 开发编码时的防御和习惯优于调试和生成问题排查。
+
+```sh
+char currentDir[256] = {0};
+getcwd(currentDir);
+currentDir[255] = '\0';  // 防止溢出
+std::string strCurrentDir(currentDir);
+```
 
 ## 优秀项目
 
