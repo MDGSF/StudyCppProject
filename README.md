@@ -343,6 +343,16 @@ std::string str(c, n);
     判断读事件。如果是 connectfd 的读事件，则从服务端收取数据。如果是 stdin-fd
     的读事件，则从控制台收集数据。
 
+## mysql
+
+ubuntu 安装 mysql
+
+```sh
+sudo apt install mysql-server
+sudo apt install mysql-client
+sudo apt install libmysqlclient-dev
+```
+
 ## Book
 
 - C++ Core Guideline
