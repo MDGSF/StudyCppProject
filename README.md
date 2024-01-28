@@ -119,6 +119,29 @@ netstat -anop | grep [xxx]
 -p display PID/Program name for sockets
 ```
 
+## lsof
+
+```sh
+# 列出系统中当前打开的网络连接的相关信息
+lsof -i -Pn
+```
+
+- `-i`：这个选项指定显示网络相关的信息。它会列出所有打开的网络连接，
+  包括TCP、UDP和UNIX域套接字。
+- `-P`：这个选项指定以原始的端口号和 `IP` 地址格式显示网络连接的信息，
+  而不进行反向解析。默认情况下，`lsof` 会尝试通过反向解析显示 IP 地址和端口号的
+  名称，但是使用 `-P` 选项可以绕过这个解析过程。
+- `-n`：这个选项指定不要尝试将网络地址和端口号的名称解析为主机名和服务名。
+  默认情况下，`lsof` 会尝试解析网络连接的地址和端口号，
+  使用 `-n` 选项可以禁用这个解析过程。
+
+## nc
+
+```sh
+# nc -v ip port 用于连接服务器
+nc -v 127.0.0.1 8888
+```
+
 ## gdb
 
 gdb 调试的时候，一般开 2 个窗口，一个看源码，一个执行 gdb 调试。
@@ -343,14 +366,38 @@ std::string str(c, n);
     判断读事件。如果是 connectfd 的读事件，则从服务端收取数据。如果是 stdin-fd
     的读事件，则从控制台收集数据。
 
-## mysql
-
-ubuntu 安装 mysql
+## cmake 编译
 
 ```sh
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j8
+# make VERBOSE=1
+make install
+```
+
+## mysql
+
+```sh
+# ubuntu 安装 mysql
 sudo apt install mysql-server
 sudo apt install mysql-client
 sudo apt install libmysqlclient-dev
+
+# 启动数据库
+sudo service mysql start
+sudo service mysql stop
+sudo service mysql restart  # 重启数据库
+sudo service mysql status  # 查看数据库是否启动
+netstat -anop | grep 3306  # 查看数据库端口是否在监听中
+
+# 设置 mysql 安全设置
+sudo mysql_secure_installation
+
+# 登录 mysql
+mysql -h 127.0.0.1 -P 3306 -u root -p
+mysql -h 127.0.0.1 -P 3306 -u root -p <database>
 ```
 
 ## Book
