@@ -336,6 +336,12 @@ size_t n = 16;
 std::string str(c, n);
 ```
 
+## C++ 编码规范
+
+`Google C++ Styles`: <https://google.github.io/styleguide/cppguide.html>
+
+- 使用 `clang-format`，参考该仓库中的 `.clang-format` 文件。
+
 ## 优秀项目
 
 ### smallchat
