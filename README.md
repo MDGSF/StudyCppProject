@@ -99,6 +99,7 @@ git pull --rebase
 - docs: 添加/修改了文档。
 - merge: 从其它分支合并过来。
 - revert: 回退。
+- refactor: 重构。
 
 ## make
 
@@ -341,6 +342,23 @@ std::string str(c, n);
 `Google C++ Styles`: <https://google.github.io/styleguide/cppguide.html>
 
 - 使用 `clang-format`，参考该仓库中的 `.clang-format` 文件。
+
+## Modern C++
+
+```cpp
+for (auto iter : strings) {}
+
+for (auto& iter : strings) {}
+
+for (const auto& iter : strings) {}
+```
+
+- RAII
+- `std::function`
+- `using`
+- `std::thread`
+- `std::mutex`
+- `std::conditional_variable`
 
 ## 优秀项目
 
