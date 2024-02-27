@@ -67,9 +67,19 @@ git reset [commit-id]
 提交记录就会非常的干净，都是一个个的功能点。
 
 ```sh
+# git rebase -i [start] [end]
+# -i 或 --interactive 表示交互操作。
+# [end] 可以省略，默认是 HEAD。
+# (start, end]，默认是不包含 start 的，但是包含 end。
+# 这个命令用于在 feature 分支执行，把多个 commit 合并为一个。
+
 # HEAD 表示最新的记录，~3表示往前推3个提交记录。
 git rebase -i HEAD~3
 ```
+
+当用 `git rebase -i [start]` 命令把 feature 分支整理好了之后，可以在 feature
+分支上面执行 `git rebase master` 进行变基，把 feature 分支添加到到 master
+分支末尾。最后，在 master 分支执行 `git merge feature_branch` 快速合并。
 
 当功能分支和主分支差别较大时，已经很难直接用 `git merge` 合入。这个时候，可以
 考虑使用 `git cherry-pick`，可以选择性的合并一些功能。
